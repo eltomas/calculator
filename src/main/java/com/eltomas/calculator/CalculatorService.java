@@ -2,6 +2,9 @@ package com.eltomas.calculator;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * Calculator Service.
+ */
 @Service
 public class CalculatorService {
 
