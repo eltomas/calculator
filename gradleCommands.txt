@@ -3,3 +3,4 @@
 ,/gradlew test --uruchomienie testów
 ./gradlew test jacocoTestReport -- sprawdzenie pokrycie kodu testami
 ./gradlew test jacocoTestCoverageVerification -- weryfikacja, czy pokrycie kodu jest wystarczajace (w build.gradle ustawiasz jaki poziom pokrycia ma byc)
+./gradlew checkstyleMain - sprawdzenie statycznej analizy kodu (checkstyle musi byc skonfigurowany)
