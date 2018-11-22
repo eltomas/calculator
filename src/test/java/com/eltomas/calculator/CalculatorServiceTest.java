@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Main Spring Application.
+ * Calculator Service Test
  */
 public class CalculatorServiceTest {
 
