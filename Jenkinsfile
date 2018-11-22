@@ -45,5 +45,10 @@ pipeline {
                 sh "docker build -t tjarmuz/calculator ."
             }
         }
+        stage("Docker push") {
+            steps {
+                sh "docker push tjarmuz/calculator"
+            }
+        }
     }
 }
