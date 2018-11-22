@@ -1,3 +1,4 @@
+feature branch zmianka :D
 ./gradlew compileJava -- kompilacja
 ./gradlew bootRun -- uruchomienie
 ,/gradlew test --uruchomienie testów
