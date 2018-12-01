@@ -47,7 +47,6 @@ pipeline {
         }
         stage("Docker push") {
             steps {
-                sh "docker login"
                 sh "docker push tjarmuz/calculator"
             }
         }
