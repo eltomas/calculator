@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+        registry = “tjarmuz/calculator”
+        registryCredential = ‘dockerhub’
+        dockerImage = ‘’
+    }
     agent any
     triggers {
         pollSCM('* * * * *')
@@ -42,12 +47,18 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker build -t tjarmuz/calculator ."
+                script {
+                    dockerImage = docker.build registry
+                }
             }
         }
         stage("Docker push") {
             steps {
-                sh "docker push tjarmuz/calculator"
+                script {
+                    docker.withRegistry( ‘’, registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
             }
         }
         stage("Deploy to staging") {
