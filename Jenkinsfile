@@ -1,8 +1,8 @@
 pipeline {
     environment {
-        registry = “tjarmuz/calculator”
-        registryCredential = ‘dockerhub’
-        dockerImage = ‘’
+        registry = 'tjarmuz/calculator'
+        registryCredential = 'dockerhub'
+        dockerImage = ''
     }
     agent any
     triggers {
@@ -68,7 +68,7 @@ pipeline {
         }
         stage("Acceptance test") {
             steps {
-                sleep 60
+                sleep 30
                 sh "sh ./acceptance_test.sh"
             }
         }
