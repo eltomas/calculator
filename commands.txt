@@ -5,3 +5,10 @@
 ./gradlew test jacocoTestCoverageVerification -- weryfikacja, czy pokrycie kodu jest wystarczajace (w build.gradle ustawiasz jaki poziom pokrycia ma byc)
 ./gradlew checkstyleMain - sprawdzenie statycznej analizy kodu (checkstyle musi byc skonfigurowany)
 ./gradlew build - buduje jar do build/libs
+
+docker-compose up -d -- startuje containtery z lokalnych obrazów (bez ich budowania)
+docker-compose --build up -- przed wystartowaniem containerów buduje obrazy
+docker-compose down -- zamyka containtery
+docker-compose ps -- wyswietla uruchomione containtery
+docker-compose build -- buduje obrazy
+docker-compose scale calculator=5 -- startuje 5 containerów
