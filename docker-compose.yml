@@ -1,7 +1,7 @@
 version: "3"
 services:
   calculator:
-    image: tjarmuz/calculator
+    build: .
     ports:
     - 8080
   redis:

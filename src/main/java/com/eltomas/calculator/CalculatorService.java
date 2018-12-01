@@ -1,5 +1,6 @@
 package com.eltomas.calculator;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorService {
 
-    int sum(int a, int b) {
+    @Cacheable("sum")
+    public int sum(int a, int b) {
         return a + b;
     }
 }
