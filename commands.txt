@@ -13,3 +13,6 @@ docker-compose ps -- wyswietla uruchomione containtery
 docker-compose build -- buduje obrazy
 docker-compose scale calculator=5 -- startuje 5 containerów
 docker-compose exec redis redis-cli -- wchodzisz do serwisu "redis" i odpalasz jego cli
+docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance up -d --build
+docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance down
+docker wait acceptance_test_1 -- sprawdzamy jaki wynik zwroci container - 0 oznacza sukces
