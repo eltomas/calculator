@@ -12,3 +12,4 @@ docker-compose down -- zamyka containtery
 docker-compose ps -- wyswietla uruchomione containtery
 docker-compose build -- buduje obrazy
 docker-compose scale calculator=5 -- startuje 5 containerów
+docker-compose exec redis redis-cli -- wchodzisz do serwisu "redis" i odpalasz jego cli
