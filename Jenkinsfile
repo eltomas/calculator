@@ -47,6 +47,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
+                /*sh "docker build -t tjarmuz/calculator ."*/
                 script {
                     dockerImage = docker.build(registry)
                 }
@@ -54,6 +55,7 @@ pipeline {
         }
         stage("Docker push") {
             steps {
+                /*sh "docker push tjarmuz/calculator"*/
                 script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
@@ -63,7 +65,8 @@ pipeline {
         }
         stage("Deploy to staging") {
             steps {
-                sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"
+                /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
+                sh "docker-compose up -d"
             }
         }
         stage("Acceptance test") {
@@ -75,7 +78,8 @@ pipeline {
     }
     post {
         always {
-            sh "docker stop calculator"
+            /*sh "docker stop calculator"*/
+            sh "docker-compose down"
         }
     }
 }
