@@ -18,12 +18,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 @EnableCaching
 public class CacheConfig extends CachingConfigurerSupport {
-    private static final String REDIS_ADDRESS = "redis";
+    private static final String DOCKER_REDIS_SERVICE_HOSTNAME = "redis";
     private static final int REDIS_PORT = 6379;
 
     @Bean
     public JedisConnectionFactory redisConnectionFactory() {
-        final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(REDIS_ADDRESS, REDIS_PORT);
+        final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(DOCKER_REDIS_SERVICE_HOSTNAME, REDIS_PORT);
         return new JedisConnectionFactory(config);
     }
 
