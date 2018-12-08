@@ -53,3 +53,7 @@ task acceptanceTest(type: Test) {
 test {
     exclude '**/acceptance/**'
 }
+
+bootJar {
+    launchScript()
+}
