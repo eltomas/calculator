@@ -83,7 +83,10 @@ pipeline {
         stage("Acceptance test") {
             steps {
                 sleep 10
-                sh "sh ./acceptance_test.sh 192.168.43.4"
+                withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "sh ./acceptance_test.sh $PASSWORD 192.168.43.4"
+                }
+
                 /*sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml build test"
                 sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance up -d"
                 sh 'test $(docker wait acceptance_test_1) -eq 0'*/
