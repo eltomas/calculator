@@ -71,9 +71,11 @@ pipeline {
                 /*sh "docker-compose up -d"*/
                 /*sh "ansible-playbook playbook.yml -i inventory/staging"*/
                 /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
-                ansiblePlaybook('playbook.yml') {
-                    inventoryPath('inventory/staging')
-                    credentialsId(ansibleSudoCredentialSsh)
+                script {
+                    ansiblePlaybook('playbook.yml') {
+                        inventoryPath('inventory/staging')
+                        credentialsId(ansibleSudoCredentialSsh)
+                    }
                 }
                 sleep 20
             }
