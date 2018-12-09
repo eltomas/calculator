@@ -1,2 +1,2 @@
 [webservers]
-web1 ansible_host=192.168.43.4 ansible_user=eltomas
+web1 ansible_host=192.168.43.4 ansible_user=eltomas ansible_sudo_pass=${ansible_test}
