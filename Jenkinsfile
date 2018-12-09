@@ -69,13 +69,13 @@ pipeline {
                 /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
                 /*sh "docker-compose up -d"*/
                 /*sh "ansible-playbook playbook.yml -i inventory/staging"*/
-                /*ansiblePlaybook credentialsId: ansibleSudoCredential, inventory: 'inventory/staging', playbook: 'playbook.yml'*/
-                ansiblePlaybook('playbook.yml') {
+                ansiblePlaybook(credentialsId: ansibleSudoCredential, inventory: 'inventory/staging', playbook: 'playbook.yml')
+                /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/staging')
                     credentialsId(ansibleSudoCredential)
                     become(true)
                     becomeUser("eltomas")
-                }
+                }*/
                 sleep 20
             }
         }
