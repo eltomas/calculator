@@ -77,7 +77,7 @@ pipeline {
                     inventoryPath('inventory/staging')
                     credentialsId(ansibleSudoCredentialSsh)
                 }*/
-                sleep 20
+                sleep 10
             }
         }
         stage("Acceptance test") {
@@ -101,7 +101,7 @@ pipeline {
                     inventoryPath('inventory/production')
                     credentialsId(ansibleSudoCredential)
                 }*/
-                sleep 20
+                sleep 10
             }
         }
         stage("Smoke test") {
