@@ -1,0 +1,2 @@
+[webservers]
+web3 ansible_host=192.168.43.81 ansible_user=eltomas
