@@ -70,13 +70,11 @@ pipeline {
                 /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
                 /*sh "docker-compose up -d"*/
                 /*sh "ansible-playbook playbook.yml -i inventory/staging"*/
-                /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
-                script {
-                    ansiblePlaybook('playbook.yml') {
-                        inventoryPath('inventory/staging')
-                        credentialsId(ansibleSudoCredentialSsh)
-                    }
-                }
+                ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
+                /*ansiblePlaybook('playbook.yml') {
+                    inventoryPath('inventory/staging')
+                    credentialsId(ansibleSudoCredentialSsh)
+                }*/
                 sleep 20
             }
         }
@@ -93,11 +91,11 @@ pipeline {
         stage("Release") {
             steps {
                 /*sh "ansible-playbook playbook.yml -i inventory/production"*/
-                /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
-                ansiblePlaybook('playbook.yml') {
+                ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
+                /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/production')
                     credentialsId(ansibleSudoCredential)
-                }
+                }*/
                 sleep 20
             }
         }
