@@ -92,8 +92,8 @@ pipeline {
         // Performance test stages
         stage("Release") {
             steps {
-                /*sh "ansible-playbook playbook.yml -i inventory/production"*/
-                ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
+                sh "ansible-playbook playbook.yml -i inventory/production"
+                /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
                 /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/production')
                     credentialsId(ansibleSudoCredential)
