@@ -69,8 +69,8 @@ pipeline {
             steps {
                 /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
                 /*sh "docker-compose up -d"*/
-                /*sh "ansible-playbook playbook.yml -i inventory/staging"*/
-                ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
+                sh "ansible-playbook playbook.yml -i inventory/staging"
+                /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
                 /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/staging')
                     credentialsId(ansibleSudoCredential)
