@@ -105,11 +105,15 @@ pipeline {
             }
         }
     }
-    /*post {
+    post {
         always {
-            *//*sh "docker stop calculator"*//*
+            /*sh "docker stop calculator"
             sh "docker-compose down"
-            *//*sh "docker-compose -f docker-compose.yml-f acceptance/docker-compose-acceptance.yml-p acceptance down"*//*
+            sh "docker-compose -f docker-compose.yml-f acceptance/docker-compose-acceptance.yml-p acceptance down"*/
+            withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh "sh ./shut_down_docker_composers.sh $PASSWORD 192.168.43.4"
+                sh "sh ./shut_down_docker_composers.sh $PASSWORD 192.168.43.118"
+            }
         }
-    }*/
+    }
 }
