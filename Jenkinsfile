@@ -86,7 +86,7 @@ pipeline {
         stage("Release") {
             steps {
                 /*sh "ansible-playbook playbook.yml -i inventory/production"*/
-                ansiblePlaybook credentialsId: ansibleSudoCredential, inventory: 'inventory/production', playbook: 'playbook.yml'
+                ansiblePlaybook(credentialsId: ansibleSudoCredential, inventory: 'inventory/production', playbook: 'playbook.yml')
                 sleep 20
             }
         }
