@@ -92,13 +92,13 @@ pipeline {
         stage("Release") {
             steps {
                 /*sh "ansible-playbook playbook.yml -i inventory/production"*/
-                /*ansiblePlaybook(credentialsId: ansibleSudoCredential, inventory: 'inventory/production', playbook: 'playbook.yml')*/
-                ansiblePlaybook('playbook.yml') {
+                ansiblePlaybook(credentialsId: ansibleSudoCredential, inventory: 'inventory/staging', playbook: 'playbook.yml', become: 'true', becomeUser: 'eltomas')
+                /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/production')
                     credentialsId(ansibleSudoCredential)
                     become(true)
                     becomeUser("eltomas")
-                }
+                }*/
                 sleep 20
             }
         }
