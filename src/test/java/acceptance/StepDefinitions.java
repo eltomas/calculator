@@ -9,7 +9,7 @@ import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Steps definitions for calculator.feature
+ * Steps definitions for calculator.acceptance
  */
 public class StepDefinitions {
     private static final String CALCULATOR_URL_PROPERTY = "calculator.url";

@@ -69,24 +69,16 @@ pipeline {
             steps {
                 /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
                 /*sh "docker-compose up -d"*/
-                /*withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh "ansible-playbook playbook.yml -i inventory/staging --extra-vars ansible_sudo_password=$PASSWORD"
-                }*/
+                //tu musialem zrobic sudo passwordless bo jest user i password
                 ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
-                /*ansiblePlaybook('playbook.yml') {
-                    inventoryPath('inventory/staging')
-                    credentialsId(ansibleSudoCredentialSsh)
-                }*/
                 sleep 10
             }
         }
         stage("Acceptance test") {
             steps {
-                sleep 10
                 withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "sh ./acceptance_test.sh $PASSWORD 192.168.43.4"
                 }
-
                 /*sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml build test"
                 sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance up -d"
                 sh 'test $(docker wait acceptance_test_1) -eq 0'*/
@@ -96,6 +88,7 @@ pipeline {
         stage("Release") {
             steps {
                 /*sh "ansible-playbook playbook.yml -i inventory/production"*/
+                //tu nie musialem robic sudo passwordless, bo podalem w jenkinsie klucz ssh
                 ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')
                 /*ansiblePlaybook('playbook.yml') {
                     inventoryPath('inventory/production')
@@ -106,7 +99,9 @@ pipeline {
         }
         stage("Smoke test") {
             steps {
-                sh "./smoke_test.sh 192.168.43.118"
+                withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "sh ./smoke_test.sh $PASSWORD 192.168.43.118"
+                }
             }
         }
     }
