@@ -70,7 +70,7 @@ pipeline {
                 /*sh "docker run -d --rm -p 8765:8080 --name calculator tjarmuz/calculator"*/
                 /*sh "docker-compose up -d"*/
                 withCredentials([usernamePassword(credentialsId: ansibleSudoCredential, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh "ansible-playbook playbook.yml -i inventory/staging -u $USERNAME --extra-vars ansible_sudo_password=$PASSWORD"
+                    sh "ansible-playbook playbook.yml -i inventory/staging --extra-vars ansible_sudo_password=$PASSWORD"
                 }
                 /*ansiblePlaybook(credentialsId: ansibleSudoCredentialSsh, inventory: 'inventory/staging', playbook: 'playbook.yml')*/
                 /*ansiblePlaybook('playbook.yml') {
